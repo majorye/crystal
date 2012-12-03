@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>UX</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+	<style type="text/css">
+       body{
+        padding: 20px;
+        background-color: #efefef;
+       }
+       pre{
+        color: green;
+        margin: 0px;
+        padding: 12px;
+       }
+       .container{
+          min-width: 200px;
+          min-height: 50px;
+          border:1px solid #666;
+          border-radius: 3px;
+          padding: 12px;
+          float: left;
+          display: inline-block;
+          -webkit-box-shadow:3px 3px 3px #e0e0e0;
+          -moz-box-shadow:3px 3px 3px  #e0e0e0;
+          box-shadow:3px 3px 3px  #e0e0e0;
+          margin: 6px;
+       }
+       .container .header{
+        display: inline-block;
+        font-size: 14px;
+        color: #444;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+       }
+	</style>
+	</head>
+<body>
+
+
+      <div class="container">
+     <span class="header">前端目录结构介绍:</span>
+     <div class="content">
+      <pre>
+         lib: 项目的js lib
+         modules: 项目的module目录,每个module按照功能划分
+         plugins: 项目中引进的开源组件
+      </pre>
+     </div>
+   </div>
+
+
+<div class="container">
+  <span class="header"> CSS命名规范:</span>
+  <div class="content">
+    <pre>
+    this.logger.warn('
+      1: 全局的CSS, 比如字体颜色，大小等，使用.g-为前缀, 如： .g-highlight{color:#fe7610;font-weight:bold;}
+      2: 组件级别的，使用.widget-为前缀, 如.widget-button
+      3: 模块级别的，使用模块的命名空间为前缀，和类名相同,如.ais-home
+
+    ');
+    </pre>
+  </div>
+</div>
+
+
+<div class="container">
+  <span class="header"> 代码规范:</span>
+  <div class="content">
+    <pre>
+    this.logger.warn('
+      1: tab为2个空格
+      2: 当一个对象到多次调用，或者多次遍历其属性或者__proto__链时，使用临时变量
+      3: 每个模块的owner，要署名, 修改他人模块时，如果是业务逻辑的变更或者比较大的更大，要写注释，并署名，如果有jira号，请附带jira号
+
+    ');
+    </pre>
+  </div>
+</div>
+
+
+   <div class="container">
+  <span class="header"> JS/CSS 开发编辑器:</span>
+  <div class="content">
+    <pre>
+     <a href="http://www.sublimetext.com">Sublime</a>, 有相应的插件来满足js, html模板
+     插件下载: <a href="SublimeNFFT.zip">SublineNFFT.zip</a>
+     解压后放到subline安装目录的package目录下，然后使用Ctrl+Alt+j来快速新建js文件，
+     这个文件会附带我们的js模板，或者通过File-> new File(template)完成
+     里面看下
+    </pre>
+  </div>
+</div>
+
+
+
+   <div class="container">
+     <span class="header"> 类的定义:</span>
+     <div class="content">
+      <pre>
+/**
+* @Author: Your Name
+* @Time: 30/11 2012
+* @description: some introduce for this module
+*/
+
+ali.defineClass("ais.myclass",ali.model,function(){
+
+  /**
+  * 
+  */
+  events: {
+    "click .cssselector": "callbackName"
+  },
+
+  callbackName: function() {
+
+  },
+    
+  /**
+  *  this method is the interface method in the ali.model
+  */
+  initData: function() {
+
+  },
+
+  /**
+  * after the ui render in the Dom , this method will be called,
+  * also the interface method it is
+  */
+  afterRender: function() {
+
+  },
+
+   /**
+   * the hook for inner class system init method, so in this method , 
+   * you could hijack some method or property .
+   */
+   initHook: function() {
+
+   }
+
+});
+      </pre>
+     </div>
+   </div>
+
+
+
+      <div class="container">
+     <span class="header"> 静态类的定义:</span>
+     <div class="content">
+      <pre>
+/**
+* @Author: Your Name
+* @Time: 30/11 2012
+* @description: some introduce for this module
+*/
+
+ali.defineClass("ais.myclass",ali.model,function(KLASS, instance){
+
+
+  KLASS.doSomeThing= function() {
+    this.logger.info("use ais.myclass.
+    doSomeThing() to invoke it")
+  };
+    
+  instance.doSomeThing= function(){
+    this.logger.info("var t=new ais.myclass(),
+     use t.doSomeThing() to invoke it")
+  };
+
+});
+      </pre>
+     </div>
+   </div>
+
+
+      <div class="container">
+     <span class="header"> Tips及名片组件:</span>
+     <div class="content">
+      <pre>
+      $('#el1').powerFloat({
+        eventType: "hover",
+        targetMode: "ajax",
+        target: "tips.php",
+        ajaxConfig: {
+          callback: cb
+        }
+      });
+      </pre>
+     </div>
+   </div>
+
+      <div class="container">
+     <span class="header"> at组件:</span>
+     <div class="content">
+      <pre>
+        详见ais.atsel 模块的说明
+      </pre>
+     </div>
+   </div>
+
+      <div class="container">
+     <span class="header">组件，模块级别间的通讯组件:</span>
+     <div class="content">
+      <pre>
+        详见Pagebus.js 模块ais.search有使用
+      </pre>
+     </div>
+   </div>
+
+      <div class="container">
+     <span class="header">分页组件:</span>
+     <div class="content">
+      <pre>
+        1： 传统分页组件： 详见plugins/jqpagination
+        2:  滑动分页： 目前没有，待完善
+      </pre>
+     </div>
+   </div>
+
+      <div class="container">
+     <span class="header">前端模板引擎:</span>
+     <div class="content">
+      <pre>
+<a href="http://handlebarsjs.com/">handlebars</a>
+      </pre>
+     </div>
+   </div>
+
+
+      <div class="container">
+     <span class="header">图片旋转组件:</span>
+     <div class="content">
+      <pre>
+<a href="imgRotate.html">jQueryRotate</a>
+      </pre>
+     </div>
+   </div>
+
+
+
+
+   <script type="text/javascript">
+
+   </script>
+
+
+</body>
+</html>

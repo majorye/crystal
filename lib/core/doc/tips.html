@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>UX</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-powerFloat.js"></script>
+    <link rel="stylesheet" href="powerFloat.css"/>
+	<style type="text/css">
+       .container{
+       	  width: 200px;
+       	  height: 50px;
+       	  border:1px solid #444;
+       	  border-radius: 3px;
+       	  margin: 12px;
+       }
+	</style>
+	</head>
+<body>
+    <div class="container">
+        <input id="search" />
+        <button id="button1" >Hi, I am hover remind tips.</button>
+    </div>
+
+
+    <div class="container">
+       <span id="el1" data-uid="myspan">HI, I am ajax tips</span>
+    </div>
+
+    <div class="container">
+        <span id="el2" data-uid="myspan2">HI, I am ajax tips 2</span>
+    </div>
+
+
+
+    <script type="text/javascript">
+		jQuery(document).ready(function($) {
+
+			var cb1=function() {
+               var dtd = jQuery.Deferred();
+               $.ajax({
+					url: 'tips.php',
+					  dataType: 'json',
+					success: function(data) {
+						dtd.resolve({'content':'<span style="padding:12px;display:inline-block;">hi, hmmmmmmm</span>',status:200});
+					},
+					error: function() {
+						dtd.resolve({'content':'',status:500});
+					}
+				});
+               return dtd.promise();
+			};
+
+		// Code using $ as usual goes here.
+			$("#search").powerFloat({
+				eventType: "focus",
+				targetMode: "remind",
+				target: "多个关键字用空格隔开<br />（例：汪洋 北京大学）"
+			});
+
+			$("#button1").powerFloat({
+				eventType: "hover",
+				targetMode: "remind",
+				target: "are you gay?"
+			});
+
+			$('#el1').powerFloat({
+			    eventType: "hover",
+				targetMode: "ajax",
+				target: "tips.php",
+				ajaxConfig: {
+					callback: cb1
+				}
+			});
+
+
+			$('#el2').powerFloat({
+			    eventType: "hover",
+				targetMode: "ajax",
+				target: "tips2.php",
+				ajaxConfig: {
+					callback: cb1
+				}
+			});
+
+
+		});
+    </script>
+</body>
+</html>
